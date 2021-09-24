@@ -10,7 +10,7 @@ export default function CreateVideo() {
     <div>
       <Head>
         <title>Video Quiz</title>
-        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <DynamicCreateVideo />
     </div>

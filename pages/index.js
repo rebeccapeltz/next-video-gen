@@ -11,7 +11,7 @@ export default function Home() {
     <div>
        <Head>
           <title>Video Quiz</title>
-          <link rel="icon" href="/images/favicon.ico" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
       <DynamicVideoQuiz />
     </div>
