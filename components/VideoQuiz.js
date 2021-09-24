@@ -173,7 +173,7 @@ export default function VideoQuiz() {
           Play Video
         </Button>
         <Modal
-          onBackdropClick="false"
+          disableBackdropClick="true"
           open={open}
           onOpen={handleOpen}
           onClose={handleClose}
@@ -209,7 +209,7 @@ export default function VideoQuiz() {
       <CardMedia
         component="video"
         sx={{ maxWidth: "md" }}
-        class="cld-video-player cld-flui"
+        className="cld-video-player cld-flui"
         id="myvideo"
       />
     </Card>
