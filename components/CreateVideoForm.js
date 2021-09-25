@@ -4,9 +4,7 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 
 const fn = ".netlify/functions/create-video/.netlify/functions/create-video";
-// const prodServer =
-// "https://next-video-gen.netlify.app/.netlify/functions/create-video/.netlify/functions/create-video";
-// const devServer = "http://localhost:51147";
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -36,7 +34,37 @@ const Form = () => {
   const [cloudinaryURL, setCloudiaryURL] = useState(
     "CLOUDINARY_URL=cloudinary://API_KEY:API_SECRET@CLOUD_NAME"
   );
-  const [manifest, setManifest] = useState({ width: 50 });
+  const [manifest, setManifest] = useState({
+    w: 500,
+    h: 500,
+    du: 30,
+    fps: 20,
+    vars: {
+      transition: "s:linearblur",
+      sdur: 2000,
+      tdur: 1000,
+      slides: [
+        {
+          media: "i:slides_000",
+        },
+        {
+          media: "i:slides_001",
+        },
+        {
+          media: "i:slides_002",
+        },
+        {
+          media: "i:slides_003",
+        },
+        {
+          media: "i:slides_004",
+        },
+        {
+          media: "i:slides_005",
+        },
+      ],
+    },
+  });
   const [notificationURL, setNotificationURL] = useState(
     "https://webhook.site"
   );
