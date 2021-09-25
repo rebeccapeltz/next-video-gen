@@ -10,17 +10,13 @@ exports.handler = async (event, context) => {
   const notificationURL = data.notification_url;
   console.log(manifest, cloudinaryURL, notificationURL, publicId);
 
-  // parse credentials
+  // set up params for signing:parse credentials
   const config = cloudinary.config();
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
-
-  //set up params for signing
   const timestamp = Math.floor(new Date().getTime() / 1000);
-  const config = cloudinary.config();
-  const cloudName = config.cloud_name;
-  const apiKey = config.api_key;
+  
 
   const paramsToSign = {
     manifest_json: JSON.stringify(manifest),
