@@ -1,5 +1,9 @@
 exports.handler = async (event, context) => {
-  const manifest = JSON.parse(event.body).manifest;
+  const data = JSON.parse(event.body);
+  const manifest = data.manifest;
+  const cloudinaryURL = data.cloudinaryURL;
+  const publicId = data.publicId;
+  const notifcationURL = data.notifcationURL;
 
   console.log(manifest)
   return {
@@ -11,7 +15,10 @@ exports.handler = async (event, context) => {
       'Access-Control-Allow-Credentials': true
     },
     body: JSON.stringify({
-      manifest: manifest
+      manifest: manifest,
+      cloudinaryURL: cloudinaryURL,
+      publicId: publicId,
+      notifcationURL: notifcationURL
     }),
   };
   
