@@ -16,7 +16,6 @@ exports.handler = async (event, context) => {
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
   const timestamp = Math.floor(new Date().getTime() / 1000);
-  
 
   const paramsToSign = {
     manifest_json: JSON.stringify(manifest),
@@ -46,7 +45,7 @@ exports.handler = async (event, context) => {
   if (notificationURL) {
     body.notification_url = notificationURL;
   }
-  console.log("prior post",JSON.stringify(body));
+  console.log("prior post", JSON.stringify(body));
 
   // post to create slideshow api
   axios
@@ -65,7 +64,7 @@ exports.handler = async (event, context) => {
           /* Required for cookies, authorization headers with HTTPS */
           "Access-Control-Allow-Credentials": true,
         },
-        body,
+        body: JSON.stringify(body)
         // body: JSON.stringify({
         //   manifest: manifest,
         //   cloudinaryURL: cloudinaryURL,
