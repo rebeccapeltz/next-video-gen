@@ -67,7 +67,7 @@ const Form = () => {
         else {
           console.log(res.manifest);
           document.getElementById("result").innerHTML = JSON.stringify(
-            res.manifest,
+            res,
             0,
             2
           );
