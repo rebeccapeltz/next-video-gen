@@ -1,8 +1,24 @@
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
+import TextField from "@mui/material/TextField";
+import { makeStyles } from '@mui/styles';
+import FormControl from '@mui/material/FormControl';
+
+
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    minWidth: 400,
+    margin: "1rem", 
+    color: "red"   
+  },
+  
+}))
 
 const manifest = {
   w: 500,
@@ -33,6 +49,7 @@ const manifest = {
     ],
   },
 };
+const manifestString = JSON.stringify(manifest, 0, 2);
 
 const options = {
   method: "POST",
@@ -40,8 +57,9 @@ const options = {
   body: JSON.stringify({ public_id: "testvc", manifest: manifest }),
 };
 
-
 export default function CreateVideo() {
+  const classes = useStyles();
+
   useEffect(() => {
     document.querySelector("#create-video").addEventListener("click", (e) => {
       fetch(
@@ -70,17 +88,67 @@ export default function CreateVideo() {
   });
 
   return (
-    <Card sx={{ maxWidth: "md" }}>
-      <CardContent sx={{ maxWidth: "md" }}>
-        <Typography component="div" variant="h5">
-          Create Video
-        </Typography>
-        <Button id="create-video" sx={{ display: "block" }}>
-          Run function to create video
-        </Button>
-        <Typography id="warning" />
-        <Typography id="result"></Typography>
-      </CardContent>
-    </Card>
+    
+    <Box component="span"  sx={{ display: "flex"  }}>
+      <Card className={classes.root}>
+      <Button id="create-video" sx={{ display: "block" }}>
+            Run function to create video
+          </Button>
+        <CardContent sx={{ maxWidth: "lg" }}>
+          <Typography component="div" variant="h5">
+            Create Video
+          </Typography>
+          <TextField
+            id="public-id"
+            variant="outlined"
+            label="Video Public ID"
+            placeholder="Enter Public ID"
+
+            // error={isFormInvalid}
+            helperText={"Enter a cloudinary public id"}
+            name="public-id"
+            // onChange={handleFormChange}
+            // defaultValue={formDataAnswer}
+            sx={{ display: "block" }}
+          />
+
+          <TextField
+            // hintText="CLOUDINARY_URL"
+            type="password"
+            placeholder="Enter or paste Cloudinary URL"
+
+            // floatingLabelText="Password"
+            name="cld-url"
+            label="CLOUDINARY_URL"
+            // helperText="Paste in CLOUDINARY_URL"
+            id="cld-url"
+            sx={{ display: "block" }}
+          ></TextField>
+
+          {/* <TextareaAutosize
+            aria-label="text area to enter manifest"
+            placeholder="Enter manifest.json"
+            style={{ width: 300, height: 200 }}
+            sx={{ display: "block" }}
+            defaultValue={{ manifestString }}
+          /> */}
+
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Multiline"
+            placeholder="Enter or paste manifest"
+            multiline
+            // style={{ width: 300, height: 200 }}
+            maxRows={10}
+            value={manifestString}
+            sx={{ display: "block" }}
+            // onChange={handleChange}
+          />
+         
+          <Typography id="warning" />
+          <Typography id="result"></Typography>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }

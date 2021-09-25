@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
-const DynamicCreateVideo = dynamic(() => import("../components/CreateVideo"), {
+const DynamicCreateVideoForm = dynamic(() => import("../components/CreateVideoForm"), {
   ssr: false,
 });
 
@@ -12,7 +12,7 @@ export default function CreateVideo() {
         <title>Video Quiz</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <DynamicCreateVideo />
+      <DynamicCreateVideoForm />
     </div>
   );
 }
