@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
+import { useRouter } from "next/router";
 
 const fn = ".netlify/functions/create-video/.netlify/functions/create-video";
-
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -28,6 +28,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Form = () => {
+  const router = useRouter();
   const classes = useStyles();
   // create state variables for each input
   const [publicId, setPublicId] = useState("testpublicid");
@@ -37,7 +38,7 @@ const Form = () => {
   const [manifest, setManifest] = useState({
     w: 500,
     h: 500,
-    du: 30,
+    du: 10,
     fps: 20,
     vars: {
       transition: "s:linearblur",
@@ -45,22 +46,34 @@ const Form = () => {
       tdur: 1000,
       slides: [
         {
-          media: "i:slides_000",
+          media:
+            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_1,f_png/TestSlide",
+          type: "s:image",
         },
         {
-          media: "i:slides_001",
+          media:
+            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_2,f_png/TestSlide",
+          type: "s:image",
         },
         {
-          media: "i:slides_002",
+          media:
+            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_3,f_png/TestSlide",
+          type: "s:image",
         },
         {
-          media: "i:slides_003",
+          media:
+            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_4,f_png/TestSlide",
+          type: "s:image",
         },
         {
-          media: "i:slides_004",
+          media:
+            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_5,f_png/TestSlide",
+          type: "s:image",
         },
         {
-          media: "i:slides_005",
+          media:
+            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_6,f_png/TestSlide",
+          type: "s:image",
         },
       ],
     },
@@ -68,7 +81,9 @@ const Form = () => {
   const [notificationURL, setNotificationURL] = useState(
     "https://webhook.site"
   );
-  const [manifestString, setManifestString] = useState(JSON.stringify(manifest,0,2));
+  const [manifestString, setManifestString] = useState(
+    JSON.stringify(manifest, 0, 2)
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -98,7 +113,7 @@ const Form = () => {
     fetch(fn, options)
       .then((res) => res.json())
       .then(async (res) => {
-        console.log(JSON.stringify(res,0,2))
+        console.log(JSON.stringify(res, 0, 2));
         if (!res.manifest)
           return (document.getElementById("warning").innerHTML =
             "Error on return");
@@ -120,6 +135,15 @@ const Form = () => {
   return (
     <div>
       <form className={classes.root} onSubmit={handleSubmit}>
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => router.replace("/")}
+          >
+            Go back to the Video
+          </Button>
+        </div>
         <h2>Create Video</h2>
         <TextField
           label="Public ID"
@@ -135,7 +159,7 @@ const Form = () => {
           placeholder="Enter manifest"
           required
           multiline
-          maxRows={10}
+          maxRows={8}
           value={manifestString}
           onChange={(e) => setManifestString(e.target.value)}
         />

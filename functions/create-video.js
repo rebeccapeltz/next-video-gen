@@ -58,13 +58,7 @@ exports.handler = async (event, context) => {
       console.log(res);
       return {
         statusCode: 200,
-        headers: {
-          /* Required for CORS support to work */
-          "Access-Control-Allow-Origin": "*",
-          /* Required for cookies, authorization headers with HTTPS */
-          "Access-Control-Allow-Credentials": true,
-        },
-        body: JSON.stringify(body)
+        body: JSON.stringify({message:"OK",status:"200"})
         // body: JSON.stringify({
         //   manifest: manifest,
         //   cloudinaryURL: cloudinaryURL,

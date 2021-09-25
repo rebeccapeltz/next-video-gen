@@ -9,11 +9,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useRouter } from 'next/router';
+
 
 import { Cloudinary } from "cloudinary-core";
 import "cloudinary-video-player/dist/cld-video-player.min.js";
 import "cloudinary-video-player/dist/cld-video-player.min.css";
 import { useEffect } from "react";
+
 
 const Div = styled("div")(({ theme }) => ({
   ...theme.typography.button,
@@ -36,10 +39,7 @@ const publicId = "slides-video";
 const cld = new Cloudinary({ cloud_name: "pictures77" });
 
 export default function VideoQuiz() {
-  // const question = "What is one?";
-  // const correctAnswer = "1";
-  // const errorResponse = "Correct: 1";
-  // const correctResponse = "Correct!";
+  const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const [media, setMedia] = React.useState(null);
 
@@ -64,6 +64,10 @@ export default function VideoQuiz() {
     setIsFormInvalid(false);
     setHelper("Enter a number");
   };
+
+  const navToCreateVideo = ()=>{
+    router.push('/create_video')
+  }
 
   const handleOpen = () => {
     setIsFormInvalid(false);
@@ -171,6 +175,9 @@ export default function VideoQuiz() {
         </Typography>
         <Button onClick={playVideo} sx={{ display: "inline" }}>
           Play Video
+        </Button>
+        <Button onClick={navToCreateVideo} sx={{ display: "inline" }}>
+          Create Video
         </Button>
         <Modal
           disableBackdropClick="true"
