@@ -70,13 +70,14 @@ const Form = () => {
     fetch(fn, options)
       .then((res) => res.json())
       .then(async (res) => {
+        console.log(JSON.stringify(res,0,2))
         if (!res.manifest)
           return (document.getElementById("warning").innerHTML =
-            "Error capturing screenshot");
+            "Error on return");
         else {
-          console.log("server:", res.body);
+          console.log("server:", res);
           document.getElementById("result").innerHTML = JSON.stringify(
-            res.body,
+            res,
             0,
             2
           );

@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
       manifest: manifest,
       cloudinaryURL: cloudinaryURL,
       publicId: publicId,
-      notifcationURL: notificationURL
+      notificationURL: notificationURL
     }),
   };
   
