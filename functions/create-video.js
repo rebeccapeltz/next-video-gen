@@ -1,11 +1,12 @@
 exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
   const manifest = data.manifest;
-  const cloudinaryURL = data.cloudinaryURL;
+  const cloudinaryURL = data.cloudinary_url;
   const publicId = data.publicId;
-  const notifcationURL = data.notifcationURL;
+  const notifcationURL = data.notifcation_url;
 
-  console.log(manifest)
+
+  console.log(manifest, cloudinaryURL, notifcationURL, publicID)
   return {
     statusCode: 200,
     headers: {

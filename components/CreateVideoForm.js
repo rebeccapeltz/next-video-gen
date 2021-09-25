@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 
 const fn = ".netlify/functions/create-video/.netlify/functions/create-video";
 // const prodServer =
-  // "https://next-video-gen.netlify.app/.netlify/functions/create-video/.netlify/functions/create-video";
+// "https://next-video-gen.netlify.app/.netlify/functions/create-video/.netlify/functions/create-video";
 // const devServer = "http://localhost:51147";
 
 const useStyles = makeStyles(() => ({
@@ -57,7 +57,12 @@ const Form = () => {
     const options = {
       method: "POST",
       // headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify({ public_id: "testvc", manifest: manifest }),
+      body: JSON.stringify({
+        public_id: "testvc",
+        manifest: manifest,
+        cloudinary_url: cloudinaryURL,
+        notification_url: notificationURL,
+      }),
     };
 
     // post to backend
