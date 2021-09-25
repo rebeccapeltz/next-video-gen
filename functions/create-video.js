@@ -46,6 +46,7 @@ exports.handler = async (event, context) => {
     body.notification_url = notificationURL;
   }
   console.log("prior post", JSON.stringify(body));
+  console.log("post to:",`https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`);
 
   // post to create slideshow api
   axios
@@ -68,7 +69,10 @@ exports.handler = async (event, context) => {
       };
     })
     .catch((error) => {
-      console.log(`statusCode: ${error}`);
-      console.error(error);
+      console.error(JSON.stringify(error, null, 2));
+      return {
+        statusCode: 500,
+        body: JSON.stringify({message:"error"});
+      }
     });
 };

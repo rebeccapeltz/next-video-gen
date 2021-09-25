@@ -99,7 +99,7 @@ const Form = () => {
     // setup options
     const options = {
       method: "POST",
-      // headers: { "Content-Type": "application/json; charset=utf-8" },
+      headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify({
         public_id: publicId,
         manifest: manifest,
@@ -108,26 +108,21 @@ const Form = () => {
       }),
     };
 
+    console.log("options prior:", options);
     // post to backend
     debugger;
     fetch(fn, options)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("in res.json");
+        res.json();
+      })
       .then(async (res) => {
-        console.log(JSON.stringify(res, 0, 2));
-        if (!res.manifest)
-          return (document.getElementById("warning").innerHTML =
-            "Error on return");
-        else {
-          console.log("server:", res);
-          document.getElementById("result").innerHTML = JSON.stringify(
-            res,
-            0,
-            2
-          );
-        }
+        console.log("in success", JSON.stringify(res, 0, 2));
+        console.log("server:", res);
+        document.getElementById("result").innerHTML = JSON.stringify(res, 0, 2);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("in error",err);
         document.getElementById("warning").textContent = `${err.toString()}`;
       });
   };
