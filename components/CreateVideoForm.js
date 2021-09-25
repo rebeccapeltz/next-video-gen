@@ -38,7 +38,7 @@ const Form = () => {
   const [manifest, setManifest] = useState({
     w: 500,
     h: 500,
-    du: 10,
+    du: 20,
     fps: 20,
     vars: {
       transition: "s:linearblur",
