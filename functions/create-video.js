@@ -6,7 +6,7 @@ exports.handler = async (event, context) => {
   const notifcationURL = data.notifcation_url;
 
 
-  console.log(manifest, cloudinaryURL, notifcationURL, publicID)
+  console.log(manifest, cloudinaryURL, notifcationURL, publicId)
   return {
     statusCode: 200,
     headers: {
