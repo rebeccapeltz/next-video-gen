@@ -44,8 +44,9 @@ exports.handler = async (event, context) => {
 
   // optional notifcation url
   if (notificationURL) {
-    paramsToSign.notification_url = notificationURL;
+    body.notification_url = notificationURL;
   }
+  console.log("prior post",JSON.stringify(body));
 
   // post to create slideshow api
   axios
@@ -74,6 +75,7 @@ exports.handler = async (event, context) => {
       };
     })
     .catch((error) => {
-      console.error(JSON.stringify(error, null, 2));
+      console.log(`statusCode: ${error}`);
+      console.error(error);
     });
 };
