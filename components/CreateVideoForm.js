@@ -68,7 +68,7 @@ const Form = () => {
   const [notificationURL, setNotificationURL] = useState(
     "https://webhook.site"
   );
-  const [manifestString, setManifestString] = useState('{"width":500}');
+  const [manifestString, setManifestString] = useState(JSON.stringify(manifest,0,2));
 
   const handleSubmit = (e) => {
     e.preventDefault();
