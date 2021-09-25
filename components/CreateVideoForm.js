@@ -3,6 +3,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 
+const fn = ".netlify/functions/create-video/.netlify/functions/create-video";
+// const prodServer =
+  // "https://next-video-gen.netlify.app/.netlify/functions/create-video/.netlify/functions/create-video";
+// const devServer = "http://localhost:51147";
+
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -41,6 +46,7 @@ const Form = () => {
     e.preventDefault();
     setManifest(JSON.parse(manifestString));
     console.log(
+      "client:",
       publicId,
       cloudinaryURL,
       notificationURL,
@@ -50,24 +56,22 @@ const Form = () => {
     // setup options
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+      // headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify({ public_id: "testvc", manifest: manifest }),
     };
 
     // post to backend
-    fetch(
-      "https://next-video-gen.netlify.app/.netlify/functions/create-video/.netlify/functions/create-video",
-      options
-    )
+    debugger;
+    fetch(fn, options)
       .then((res) => res.json())
       .then(async (res) => {
         if (!res.manifest)
           return (document.getElementById("warning").innerHTML =
             "Error capturing screenshot");
         else {
-          console.log(res.manifest);
+          console.log("server:", res.body);
           document.getElementById("result").innerHTML = JSON.stringify(
-            res,
+            res.body,
             0,
             2
           );
