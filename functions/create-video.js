@@ -12,6 +12,7 @@ exports.handler = async (event, context) => {
 
   // set up params for signing:parse credentials
   const config = cloudinary.config(cloudinaryURL);
+  console.log("config:",JSON.stringify(config,0,2));
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;

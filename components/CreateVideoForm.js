@@ -103,7 +103,7 @@ const Form = () => {
         public_id: publicId,
         manifest: manifest,
         cloudinary_url: cloudinaryURL,
-        notification_url: notificationURL,
+        notification_url: notificationURL
       }),
     };
 
