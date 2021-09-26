@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import { useRouter } from "next/router";
 
-const fn = ".netlify/functions/create-video/.netlify/functions/create-video";
+const fn = ".netlify/functions/create-video";
 
 const useStyles = makeStyles(() => ({
   root: {
