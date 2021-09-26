@@ -1,5 +1,4 @@
-// const axios = require("axios");
-import fetch from "node-fetch";
+const axios = require("axios");
 
 exports.handler = async (event, context) => {
   //load data from body
@@ -21,6 +20,9 @@ exports.handler = async (event, context) => {
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
   console.log("config:", cloudName, apiKey, "secret");
+
+  // define api
+  const API = `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`;
 
   const timestamp = Math.floor(new Date().getTime() / 1000);
 
@@ -50,10 +52,22 @@ exports.handler = async (event, context) => {
   };
 
   console.log("prior post", JSON.stringify(body));
-  console.log(
-    "post to:",
-    `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`
-  );
+  console.log("post to:", API);
+
+  try {
+    const response = await axios.post(API, body);
+    console.log(response);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "success" }),
+    };
+  } catch (error) {
+    console.log(error.response.body);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: "error" }),
+    };
+  }
 
   // const response = await fetch(
   //   `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
@@ -62,11 +76,11 @@ exports.handler = async (event, context) => {
   // const resData = await response.json();
 
   // console.log(resData);
-  console.log("return 200");
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: "OK", status: "200" }),
-  };
+  // console.log("return 200");
+  // return {
+  //   statusCode: 200,
+  //   body: JSON.stringify({ message: "OK", status: "200" }),
+  // };
 
   // post to create slideshow api
   // axios
