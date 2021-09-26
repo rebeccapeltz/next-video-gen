@@ -1,15 +1,15 @@
-const axios = require("axios");
+// const axios = require("axios");
+import fetch from "node-fetch";
 
 exports.handler = async (event, context) => {
   //load data from body
   const data = JSON.parse(event.body);
   const manifest = data.manifest;
   // extract value
-  const cloudinaryURLValue = data.cloudinary_url.split('=')[1];
+  const cloudinaryURLValue = data.cloudinary_url.split("=")[1];
   // set process.env before loading cloudinary
-  process.env['CLOUDINARY_URL'] = cloudinaryURLValue;
+  process.env["CLOUDINARY_URL"] = cloudinaryURLValue;
   const cloudinary = require("cloudinary").v2;
-
 
   const publicId = data.public_id;
   const notificationURL = data.notification_url;
@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
-  console.log("config:",cloudName, apiKey, apiSecret);
+  console.log("config:", cloudName, apiKey, apiSecret);
 
   const timestamp = Math.floor(new Date().getTime() / 1000);
 
@@ -33,9 +33,8 @@ exports.handler = async (event, context) => {
   const paramsToSign = {
     manifest_json: JSON.stringify(manifest),
     public_id: publicId,
-    timestamp: timestamp
+    timestamp: timestamp,
   };
-
 
   // sign params
   const signature = cloudinary.utils.api_sign_request(paramsToSign, apiSecret);
@@ -50,30 +49,44 @@ exports.handler = async (event, context) => {
     manifest_json: JSON.stringify(manifest),
   };
 
- 
   console.log("prior post", JSON.stringify(body));
-  console.log("post to:",`https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`);
+  console.log(
+    "post to:",
+    `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`
+  );
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
+    { method: "POST", body: body }
+  );
+  const resData = await response.json();
+
+  console.log(resData);
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "OK", status: "200" }),
+  };
 
   // post to create slideshow api
-  axios
-    .post(
-      `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
-      body
-    )
-    .then(res => {
-      // console.log(`statusCode: ${res.status}`);
-      // console.log(res);
-      console.log("success");
-      return {
-        statusCode: 200,
-        body: JSON.stringify({message:"OK",status:"200"})
-      };
-    })
-    .catch((error) => {
-      console.error("faile");
-      return {
-        statusCode: 500,
-        body: JSON.stringify({message:"error"})
-      }
-    });
+  // axios
+  //   .post(
+  //     `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
+  //     body
+  //   )
+  //   .then(res => {
+  //     // console.log(`statusCode: ${res.status}`);
+  //     // console.log(res);
+  //     console.log("success");
+  //     return {
+  //       statusCode: 200,
+  //       body: JSON.stringify({message:"OK",status:"200"})
+  //     };
+  //   })
+  //   .catch((error) => {
+  //     console.error("faile");
+  //     return {
+  //       statusCode: 500,
+  //       body: JSON.stringify({message:"error"})
+  //     }
+  //   });
 };
