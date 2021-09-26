@@ -27,13 +27,10 @@ exports.handler = async (event, context) => {
   const paramsToSign = {
     manifest_json: JSON.stringify(manifest),
     public_id: publicId,
+    notification_url: notificationUrl,
     timestamp: timestamp,
   };
 
-  // optional notifcation url
-  if (notificationURL) {
-    paramsToSign.notification_url = notificationURL;
-  }
 
   // sign params
   const signature = cloudinary.utils.api_sign_request(paramsToSign, apiSecret);
@@ -41,17 +38,16 @@ exports.handler = async (event, context) => {
   // set up body to post to Cloudinary
   const body = {
     public_id: publicId,
+    notification_url: notificationUrl,
     api_key: apiKey,
     resource_type: "video",
     timestamp: timestamp,
     signature: signature,
+    notification_url: notificationUrl,
     manifest_json: JSON.stringify(manifest),
   };
 
-  // optional notifcation url
-  if (notificationURL) {
-    body.notification_url = notificationURL;
-  }
+ 
   console.log("prior post", JSON.stringify(body));
   console.log("post to:",`https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`);
 
@@ -61,22 +57,17 @@ exports.handler = async (event, context) => {
       `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
       body
     )
-    .then((res) => {
-      console.log(`statusCode: ${res.status}`);
-      console.log(res);
+    .then(res => {
+      // console.log(`statusCode: ${res.status}`);
+      // console.log(res);
+      console.log("success");
       return {
         statusCode: 200,
         body: JSON.stringify({message:"OK",status:"200"})
-        // body: JSON.stringify({
-        //   manifest: manifest,
-        //   cloudinaryURL: cloudinaryURL,
-        //   publicId: publicId,
-        //   notificationURL: notificationURL
-        // }),
       };
     })
     .catch((error) => {
-      console.error(JSON.stringify(error, null, 2));
+      console.error("faile");
       return {
         statusCode: 500,
         body: JSON.stringify({message:"error"})
