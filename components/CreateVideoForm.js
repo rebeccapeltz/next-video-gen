@@ -4,8 +4,6 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import { useRouter } from "next/router";
 
-const fn = ".netlify/functions/create-video";
-
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -26,6 +24,7 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
+const fn = ".netlify/functions/create-video";
 
 const Form = () => {
   const router = useRouter();
