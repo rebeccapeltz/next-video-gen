@@ -111,18 +111,18 @@ const Form = () => {
     // post to backend
     debugger;
     fetch(fn, options)
-      .then((res) => {
+      .then(res => {
         console.log("in res.json");
         res.json();
       })
-      .then(async (res) => {
-        console.log("in success", JSON.stringify(res, 0, 2));
-        console.log("server:", res);
-        document.getElementById("result").innerHTML = JSON.stringify(res, 0, 2);
+      .then(data => {
+        console.log("in success", data);
+        console.log("server:", data);
+        document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
       })
-      .catch((err) => {
-        console.log("in error",err);
-        document.getElementById("warning").textContent = `${err.toString()}`;
+      .catch(error => {
+        console.log("in error",error);
+        document.getElementById("warning").textContent = `${error.toString()}`;
       });
   };
 
