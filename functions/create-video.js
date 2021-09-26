@@ -24,11 +24,16 @@ exports.handler = async (event, context) => {
 
   const timestamp = Math.floor(new Date().getTime() / 1000);
 
+  // const paramsToSign = {
+  //   manifest_json: JSON.stringify(manifest),
+  //   public_id: publicId,
+  //   notification_url: notificationUrl,
+  //   timestamp: timestamp,
+  // };
   const paramsToSign = {
     manifest_json: JSON.stringify(manifest),
     public_id: publicId,
-    notification_url: notificationUrl,
-    timestamp: timestamp,
+    timestamp: timestamp
   };
 
 
@@ -38,7 +43,6 @@ exports.handler = async (event, context) => {
   // set up body to post to Cloudinary
   const body = {
     public_id: publicId,
-    notification_url: notificationUrl,
     api_key: apiKey,
     resource_type: "video",
     timestamp: timestamp,
