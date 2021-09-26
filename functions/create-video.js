@@ -4,9 +4,10 @@ exports.handler = async (event, context) => {
   //load data from body
   const data = JSON.parse(event.body);
   const manifest = data.manifest;
-  const cloudinaryURL = data.cloudinary_url;
+  // extract value
+  const cloudinaryURLValue = data.cloudinary_url.split('=')[1];
   // set process.env before loading cloudinary
-  process.env['CLOUDINARY_URL'] = cloudinaryURL;
+  process.env['CLOUDINARY_URL'] = cloudinaryURLValue;
   const cloudinary = require("cloudinary").v2;
 
 
