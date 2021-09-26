@@ -43,7 +43,6 @@ exports.handler = async (event, context) => {
     resource_type: "video",
     timestamp: timestamp,
     signature: signature,
-    notification_url: notificationUrl,
     manifest_json: JSON.stringify(manifest),
   };
 
