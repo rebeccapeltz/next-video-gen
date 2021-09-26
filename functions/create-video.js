@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
-  console.log("config:", cloudName, apiKey, apiSecret);
+  console.log("config:", cloudName, apiKey, "secret");
 
   const timestamp = Math.floor(new Date().getTime() / 1000);
 
@@ -55,13 +55,14 @@ exports.handler = async (event, context) => {
     `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`
   );
 
-  const response = await fetch(
-    `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
-    { method: "POST", body: body }
-  );
-  const resData = await response.json();
+  // const response = await fetch(
+  //   `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
+  //   { method: "POST", body: body }
+  // );
+  // const resData = await response.json();
 
-  console.log(resData);
+  // console.log(resData);
+  console.log("return 200");
   return {
     statusCode: 200,
     body: JSON.stringify({ message: "OK", status: "200" }),
