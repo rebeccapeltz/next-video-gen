@@ -6,12 +6,14 @@ exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
   const manifest = data.manifest;
   const cloudinaryURL = data.cloudinary_url;
+  process.env['CLOUDINARY_URL'] = cloudinaryURL;
+
   const publicId = data.public_id;
   const notificationURL = data.notification_url;
   console.log(manifest, cloudinaryURL, notificationURL, publicId);
 
   // set up params for signing:parse credentials
-  const config = cloudinary.config(cloudinaryURL);
+  const config = cloudinary.config();
   console.log("config:",JSON.stringify(config,0,2));
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
