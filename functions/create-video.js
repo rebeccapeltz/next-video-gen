@@ -1,4 +1,3 @@
-const cloudinary = require("cloudinary").v2;
 const axios = require("axios");
 
 exports.handler = async (event, context) => {
@@ -6,7 +5,10 @@ exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
   const manifest = data.manifest;
   const cloudinaryURL = data.cloudinary_url;
+  // set process.env before loading cloudinary
   process.env['CLOUDINARY_URL'] = cloudinaryURL;
+  const cloudinary = require("cloudinary").v2;
+
 
   const publicId = data.public_id;
   const notificationURL = data.notification_url;
@@ -14,10 +16,11 @@ exports.handler = async (event, context) => {
 
   // set up params for signing:parse credentials
   const config = cloudinary.config();
-  console.log("config:",JSON.stringify(config,0,2));
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
+  console.log("config:",cloudName, apiKey, apiSecret);
+
   const timestamp = Math.floor(new Date().getTime() / 1000);
 
   const paramsToSign = {
