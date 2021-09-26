@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-const fn = ".netlify/functions/create-video";
+const fn = "/.netlify/functions/create-video";
 
 const Form = () => {
   const router = useRouter();
