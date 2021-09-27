@@ -11,7 +11,7 @@ exports.handler = async (event) => {
   const publicId = data.public_id;
   const notificationURL = data.notification_url;
   const manifest = data.manifest;
-   console.log(manifest, notificationURL, publicId);
+   console.log(JSON.stringify(manifest,0,2), notificationURL, publicId);
 
   // set up params for signing:parse credentials
   // parse cloudinary URL values
