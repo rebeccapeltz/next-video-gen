@@ -85,7 +85,7 @@ const Form = () => {
     },
   });
   const [notificationURL, setNotificationURL] = useState(
-    "https://webhook.site"
+    "https://webhook.site/a7cbf678-adf7-4847-8586-96e6825cea46"
   );
   const [manifestString, setManifestString] = useState(
     JSON.stringify(manifest, 0, 2)
