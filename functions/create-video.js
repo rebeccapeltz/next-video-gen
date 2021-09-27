@@ -24,19 +24,14 @@ exports.handler = async (event, context) => {
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
-  console.log("config:", cloudName, apiKey, "secret");
+  // console.log("config:", cloudName, apiKey, "secret");
 
   // define api
   const API = `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`;
 
   const timestamp = Math.floor(new Date().getTime() / 1000);
 
-  // const paramsToSign = {
-  //   manifest_json: JSON.stringify(manifest),
-  //   public_id: publicId,
-  //   notification_url: notificationUrl,
-  //   timestamp: timestamp,
-  // };
+  // setup params to sign
   const paramsToSign = {
     manifest_json: JSON.stringify(manifest),
     public_id: publicId,
@@ -58,57 +53,22 @@ exports.handler = async (event, context) => {
     manifest_json: JSON.stringify(manifest),
   };
 
-  console.log("prior post", JSON.stringify(body));
-  console.log("post to:", API);
+  // console.log("prior post", JSON.stringify(body));
+  // console.log("post to:", API);
 
   try {
     const response = await axios.post(API, body);
-    console.log(response);
+    // console.log(response);
     return {
-      statusCode: 200,
+      statusCode: response.status,
       body: JSON.stringify({ message: "success" }),
     };
   } catch (error) {
-    console.log(error.response.body);
+    // console.log(error.response.body);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "error" }),
     };
   }
 
-  // const response = await fetch(
-  //   `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
-  //   { method: "POST", body: body }
-  // );
-  // const resData = await response.json();
-
-  // console.log(resData);
-  // console.log("return 200");
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify({ message: "OK", status: "200" }),
-  // };
-
-  // post to create slideshow api
-  // axios
-  //   .post(
-  //     `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`,
-  //     body
-  //   )
-  //   .then(res => {
-  //     // console.log(`statusCode: ${res.status}`);
-  //     // console.log(res);
-  //     console.log("success");
-  //     return {
-  //       statusCode: 200,
-  //       body: JSON.stringify({message:"OK",status:"200"})
-  //     };
-  //   })
-  //   .catch((error) => {
-  //     console.error("faile");
-  //     return {
-  //       statusCode: 500,
-  //       body: JSON.stringify({message:"error"})
-  //     }
-  //   });
 };
