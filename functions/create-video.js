@@ -25,6 +25,7 @@ exports.handler = async (event) => {
   // parse cloudinary URL values
   const config = cloudinary.config();
   const cloudName = config.cloud_name;
+  console.log('cloudname:',cloud_name);
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
 
