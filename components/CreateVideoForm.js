@@ -42,59 +42,62 @@ const requestCreateVideo = async (FN, body) => {
     document.getElementById("warning").textContent = `${error.toString()}`;
   }
 };
-
+const inititalManifest = {
+  w: 500,
+  h: 500,
+  du: 10,
+  fps: 20,
+  vars: {
+    transition: "s:linearblur",
+    sdur: 1000,
+    tdur: 500,
+    slides: [
+      {
+        media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_1,f_png/test-slide`,
+        type: "s:image",
+      },
+      {
+        media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_2,f_png/test-slide`,
+        type: "s:image",
+      },
+      {
+        media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_3,f_png/test-slide`,
+        type: "s:image",
+      },
+      {
+        media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_4,f_png/test-slide`,
+        type: "s:image",
+      },
+      {
+        media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_5,f_png/test-slide`,
+        type: "s:image",
+      },
+      {
+        media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_6,f_png/test-slide`,
+        type: "s:image",
+      },
+    ],
+  },
+}
 const Form = () => {
   const router = useRouter();
   const classes = useStyles();
   // create state variables for each input
   const [publicId, setPublicId] = useState("testpublicid");
-  const [manifest, setManifest] = useState({
-    w: 500,
-    h: 500,
-    du: 10,
-    fps: 20,
-    vars: {
-      transition: "s:linearblur",
-      sdur: 1000,
-      tdur: 500,
-      slides: [
-        {
-          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_1,f_png/test-slide`,
-          type: "s:image",
-        },
-        {
-          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_2,f_png/test-slide`,
-          type: "s:image",
-        },
-        {
-          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_3,f_png/test-slide`,
-          type: "s:image",
-        },
-        {
-          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_4,f_png/test-slide`,
-          type: "s:image",
-        },
-        {
-          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_5,f_png/test-slide`,
-          type: "s:image",
-        },
-        {
-          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_6,f_png/test-slide`,
-          type: "s:image",
-        },
-      ],
-    },
-  });
+  let manifest = null;
+  // const [manifest, setManifest] = useState(null);
   const [notificationURL, setNotificationURL] = useState(
     "https://webhook.site/a7cbf678-adf7-4847-8586-96e6825cea46"
   );
   const [manifestString, setManifestString] = useState(
-    JSON.stringify(manifest, 0, 2)
+    JSON.stringify(inititalManifest, 0, 2)
   );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setManifest(JSON.parse(manifestString));
+    debugger;
+    // setManifest(JSON.parse(manifestString));
+    manifest = JSON.parse(manifestString);
     console.log("after parse",manifest, JSON.stringify(manifest))
 
     // setup body
@@ -136,7 +139,7 @@ const Form = () => {
           required
           multiline
           maxRows={15}
-          value={manifestString}
+          // value={}
           onChange={(e) => setManifestString(e.target.value)}
         />
         <TextField
