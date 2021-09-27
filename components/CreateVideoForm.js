@@ -29,7 +29,7 @@ const requestCreateVideo = async (FN, body) => {
   try {
     const response = await axios.post(FN, body);
     console.log(response);
-    document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
+    document.getElementById("result").innerHTML = JSON.stringify(response, 0, 2);
   } catch (error) {
     console.log(error);
     document.getElementById("warning").textContent = `${error.toString()}`;
