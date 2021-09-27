@@ -135,7 +135,7 @@ const Form = () => {
           multiline
           maxRows={15}
           value={manifestString}
-          onChange={(e) => setManifestString(e.target.value)}
+          onChange={(e) => setManifest(e.target.value)}
         />
         <TextField
           label="Notification URL"
