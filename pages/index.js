@@ -14,7 +14,7 @@ export default function Home() {
       4.5: {
         question: "How many kittens?",
         correctResponse: "Correct!",
-        errorReponse: "Correct answer: 1",
+        errorResponse: "Correct answer: 1",
         correctAnswer: "1",
       },
       7.5: {
