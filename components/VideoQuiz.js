@@ -9,13 +9,13 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useRouter } from 'next/router';
-
+import { useRouter } from "next/router";
 
 import { Cloudinary } from "cloudinary-core";
 import "cloudinary-video-player/dist/cld-video-player.min.js";
 import "cloudinary-video-player/dist/cld-video-player.min.css";
 import { useEffect } from "react";
+
 
 
 const Div = styled("div")(({ theme }) => ({
@@ -65,9 +65,9 @@ export default function VideoQuiz() {
     setHelper("Enter a number");
   };
 
-  const navToCreateVideo = ()=>{
-    router.push('/create_video')
-  }
+  const navToCreateVideo = () => {
+    router.push("/create_video");
+  };
 
   const handleOpen = () => {
     setIsFormInvalid(false);
@@ -110,7 +110,7 @@ export default function VideoQuiz() {
     const media = cld.videoPlayer("myvideo", {
       publicId: publicId,
       fluid: true,
-      controls: false,
+      controls: true,
       autoplay: false,
       preload: "auto",
       mute: true,
@@ -132,12 +132,13 @@ export default function VideoQuiz() {
     });
     setMedia(media);
     media.on("ended", (event) => {
-    //   .video-js .vjs-big-play-button {
-    //     display: none;
-    // }
-    // .video-js .vjs-control-bar {
-    //     display: flex;
-    // }
+      //   .video-js .vjs-big-play-button {
+      //     display: none;
+      // }
+      // .video-js .vjs-control-bar {
+      //     display: flex;
+      //https://stackoverflow.com/questions/17702693/remove-big-play-button-and-show-the-bottom-play-menu
+      // }
       initState();
     });
     media.on("timeplayed", (event) => {
@@ -170,14 +171,19 @@ export default function VideoQuiz() {
   return (
     <Card sx={{ maxWidth: "md" }}>
       <CardContent sx={{ maxWidth: "md" }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={navToCreateVideo}
+          sx={{ display: "block" }}
+        >
+          Go to Create Video
+        </Button>
         <Typography component="div" variant="h5">
           Video
         </Typography>
         <Button onClick={playVideo} sx={{ display: "inline" }}>
           Play Video
-        </Button>
-        <Button onClick={navToCreateVideo} sx={{ display: "inline" }}>
-          Create Video
         </Button>
         <Modal
           disableBackdropClick="true"
@@ -215,7 +221,7 @@ export default function VideoQuiz() {
       </CardContent>
       <CardMedia
         component="video"
-        sx={{ maxWidth: "md" }}
+        sx={{ maxWidth: "md", }}
         className="cld-video-player cld-flui"
         id="myvideo"
       />

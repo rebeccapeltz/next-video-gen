@@ -3,8 +3,11 @@ const axios = require("axios");
 exports.handler = async (event, context) => {
   //load data from body
   const data = JSON.parse(event.body);
+  console.log("data:",JSON.stringify(data,0,2));
+
   const manifest = data.manifest;
-  // extract value
+  // extract cld url value
+  console.log("cld url", data.cloudinary_url)
   const cloudinaryURLValue = data.cloudinary_url.split("=")[1];
   // set process.env before loading cloudinary
   process.env["CLOUDINARY_URL"] = cloudinaryURLValue;
