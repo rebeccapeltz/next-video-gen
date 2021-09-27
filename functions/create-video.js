@@ -11,14 +11,7 @@ exports.handler = async (event) => {
   const publicId = data.public_id;
   const notificationURL = data.notification_url;
   const manifest = data.manifest;
-  // extract cld url value from CLOUDINARY_URL=cloudinary://...
-  // console.log("cld url", data.cloudinary_url)
-  // const cloudinaryURLValue = data.cloudinary_url.split("=")[1];
-  // set process.env before loading cloudinary
-  // process.env["CLOUDINARY_URL"] = cloudinaryURLValue;
-  // const cloudinary = require("cloudinary").v2;
-
-  console.log(manifest, notificationURL, publicId);
+   console.log(manifest, notificationURL, publicId);
 
   // set up params for signing:parse credentials
   // parse cloudinary URL values

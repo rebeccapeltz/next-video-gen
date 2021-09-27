@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 import { useRouter } from "next/router";
 const axios = require("axios");
 
+const cloudName = "dhhz4q1ip";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,10 +30,14 @@ const FN = "/.netlify/functions/create-video";
 const requestCreateVideo = async (FN, body) => {
   try {
     const response = await axios.post(FN, body);
-    console.log("response:",response);
-    document.getElementById("result").innerHTML = JSON.stringify(response, 0, 2);
+    console.log("response:", response);
+    document.getElementById("result").innerHTML = JSON.stringify(
+      response,
+      0,
+      2
+    );
   } catch (error) {
-    console.log("error:",error);
+    console.log("error:", error);
     document.getElementById("warning").textContent = `${error.toString()}`;
   }
 };
@@ -53,33 +58,27 @@ const Form = () => {
       tdur: 500,
       slides: [
         {
-          media:
-            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_1,f_png/TestSlide",
+          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_1,f_png/test-slide`,
           type: "s:image",
         },
         {
-          media:
-            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_2,f_png/TestSlide",
+          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_2,f_png/test-slide`,
           type: "s:image",
         },
         {
-          media:
-            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_3,f_png/TestSlide",
+          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_3,f_png/test-slide`,
           type: "s:image",
         },
         {
-          media:
-            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_4,f_png/TestSlide",
+          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_4,f_png/test-slide`,
           type: "s:image",
         },
         {
-          media:
-            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_5,f_png/TestSlide",
+          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_5,f_png/test-slide`,
           type: "s:image",
         },
         {
-          media:
-            "s:https://res.cloudinary.com/pictures77/image/upload/w_400,c_scale,pg_6,f_png/TestSlide",
+          media: `s:https://res.cloudinary.com/${cloudName}/image/upload/w_400,c_scale,pg_6,f_png/test-slide`,
           type: "s:image",
         },
       ],
@@ -95,7 +94,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setManifest(JSON.parse(manifestString));
-    
+
     // setup body
     const body = JSON.stringify({
       public_id: publicId,

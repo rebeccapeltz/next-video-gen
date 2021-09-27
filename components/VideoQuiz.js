@@ -123,13 +123,9 @@ export default function VideoQuiz() {
         width: 400,
         crop: "fill",
       },
+      
       posterOptions: {
         publicId: "cats-and-dogs",
-        transformation: {
-          aspect_ratio: "1.5",
-          width: 400,
-          crop: "fill",
-        },
       },
     });
     setMedia(media);
