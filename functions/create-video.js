@@ -40,6 +40,7 @@ exports.handler = async (event, context) => {
   const paramsToSign = {
     manifest_json: JSON.stringify(manifest),
     public_id: publicId,
+    notification_url: notificationURL,
     timestamp: timestamp,
   };
 
@@ -49,6 +50,7 @@ exports.handler = async (event, context) => {
   // set up body to post to Cloudinary
   const body = {
     public_id: publicId,
+    notification_url: notificationURL,
     api_key: apiKey,
     resource_type: "video",
     timestamp: timestamp,

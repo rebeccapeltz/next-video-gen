@@ -28,10 +28,10 @@ const FN = "/.netlify/functions/create-video";
 const requestCreateVideo = async (FN, body) => {
   try {
     const response = await axios.post(FN, body);
-    console.log(response);
+    console.log("response:",response);
     document.getElementById("result").innerHTML = JSON.stringify(response, 0, 2);
   } catch (error) {
-    console.log(error);
+    console.log("error:",error);
     document.getElementById("warning").textContent = `${error.toString()}`;
   }
 };
@@ -97,13 +97,13 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setManifest(JSON.parse(manifestString));
-    console.log(
-      "client:",
-      publicId,
-      cloudinaryURL,
-      notificationURL,
-      JSON.stringify(manifest, 0, 2)
-    );
+    // console.log(
+    //   "client:",
+    //   publicId,
+    //   cloudinaryURL,
+    //   notificationURL,
+    //   JSON.stringify(manifest, 0, 2)
+    // );
   
     // setup body
     const body = JSON.stringify({
@@ -112,7 +112,7 @@ const Form = () => {
       cloudinary_url: cloudinaryURL,
       notification_url: notificationURL,
     });
-    console.log("body prior:", body);
+    // console.log("body prior:", body);
 
     // post to backend
     requestCreateVideo(FN, body);
