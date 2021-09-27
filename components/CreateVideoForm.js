@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 import { useRouter } from "next/router";
 const axios = require("axios");
 
+
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -44,12 +45,12 @@ const Form = () => {
   const [manifest, setManifest] = useState({
     w: 500,
     h: 500,
-    du: 20,
+    du: 10,
     fps: 20,
     vars: {
       transition: "s:linearblur",
-      sdur: 2000,
-      tdur: 1000,
+      sdur: 1000,
+      tdur: 500,
       slides: [
         {
           media:
