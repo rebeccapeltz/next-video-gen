@@ -41,9 +41,6 @@ const Form = () => {
   const classes = useStyles();
   // create state variables for each input
   const [publicId, setPublicId] = useState("testpublicid");
-  const [cloudinaryURL, setCloudiaryURL] = useState(
-    "CLOUDINARY_URL=cloudinary://API_KEY:API_SECRET@CLOUD_NAME"
-  );
   const [manifest, setManifest] = useState({
     w: 500,
     h: 500,
@@ -97,22 +94,13 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setManifest(JSON.parse(manifestString));
-    // console.log(
-    //   "client:",
-    //   publicId,
-    //   cloudinaryURL,
-    //   notificationURL,
-    //   JSON.stringify(manifest, 0, 2)
-    // );
-  
+    
     // setup body
     const body = JSON.stringify({
       public_id: publicId,
       manifest: manifest,
-      cloudinary_url: cloudinaryURL,
       notification_url: notificationURL,
     });
-    // console.log("body prior:", body);
 
     // post to backend
     requestCreateVideo(FN, body);
@@ -157,15 +145,6 @@ const Form = () => {
           value={notificationURL}
           onChange={(e) => setNotificationURL(e.target.value)}
         />
-        {/* <TextField
-          label="Cloudinary URL"
-          placeholder="Enter Cloudinary URL"
-          variant="filled"
-          type="password"
-          required
-          value={cloudinaryURL}
-          onChange={(e) => setCloudiaryURL(e.target.value)}
-        /> */}
         <div>
           <Button type="submit" variant="contained" color="primary">
             Submit Create Request
