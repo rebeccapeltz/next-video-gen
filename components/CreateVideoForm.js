@@ -133,7 +133,7 @@ const Form = () => {
           placeholder="Enter manifest"
           required
           multiline
-          maxRows={8}
+          maxRows={15}
           value={manifestString}
           onChange={(e) => setManifestString(e.target.value)}
         />

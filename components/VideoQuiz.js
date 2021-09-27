@@ -16,6 +16,7 @@ import "cloudinary-video-player/dist/cld-video-player.min.js";
 import "cloudinary-video-player/dist/cld-video-player.min.css";
 import { useEffect } from "react";
 
+
 const Div = styled("div")(({ theme }) => ({
   ...theme.typography.button,
   backgroundColor: theme.palette.background.paper,
@@ -33,10 +34,15 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const publicId = "test926";
-const cld = new Cloudinary({ cloud_name: "pictures77" });
 
-export default function VideoQuiz() {
+export default function VideoQuiz(props) {
+  // console.log("props", props.quiz);
+  // console.log("times",props.quiz.playedEventTimes)
+
+  const cld = new Cloudinary({ cloud_name: props.quiz.cloudName });
+  const publicId = props.quiz.publicId;
+
+  
   const router = useRouter();
 
   const [open, setOpen] = React.useState(false);
@@ -44,19 +50,16 @@ export default function VideoQuiz() {
 
   const [formDataAnswer, setFormDataAnswer] = useState("");
   const [formDataCorrect, setFormDataCorrect] = useState(false);
-  const [question, setQuestion] = useState(""); // What is
+  const [question, setQuestion] = useState(""); 
   const [errorResponse, setErrorResponse] = useState(""); // Correct:
   const [correctResponse, setCorrectResponse] = useState(""); // Correct!
-  const [correctAnswer, setCorrectAnswer] = useState(""); //"1"
+  const [correctAnswer, setCorrectAnswer] = useState(""); 
   // form is initially neither valid nor invalid
   // user must submit before one of they get set
   const [isFormInvalid, setIsFormInvalid] = useState(false);
   const [helper, setHelper] = useState("Enter a number");
 
-  const refresh = () => {
-    debugger;
-    window.location.reload(false);
-  };
+
   const initState = () => {
     setOpen(false);
     setQuestion("");
@@ -105,9 +108,9 @@ export default function VideoQuiz() {
   };
   function handleFormChange(event) {
     setFormDataAnswer(event.target.value);
+    // debugger;
     setFormDataCorrect(event.target.value === correctAnswer);
   }
-
   useEffect(() => {
     const media = cld.videoPlayer("myvideo", {
       publicId: publicId,
@@ -117,7 +120,7 @@ export default function VideoQuiz() {
       preload: "auto",
       mute: true,
       bigPlayButton: true,
-      playedEventTimes: [3, 7.5, 12, 16.5, 21],
+      playedEventTimes: props.quiz.playedEventTimes,
       transformation: {
         aspect_ratio: "1.5",
         width: 400,
@@ -130,24 +133,28 @@ export default function VideoQuiz() {
     });
     setMedia(media);
     media.on("ended", (event) => {
-      //   .video-js .vjs-big-play-button {
-      //     display: none;
-      // }
-      // .video-js .vjs-control-bar {
-      //     display: flex;
-      //https://stackoverflow.com/questions/17702693/remove-big-play-button-and-show-the-bottom-play-menu
-      // }
       initState();
     });
     media.on("timeplayed", (event) => {
-      if (event.eventData.time === 12) {
+      let time = event.eventData.time;
+      if (props.quiz.questions[time]){
+        media.pause();
+        handleOpen();
+        // debugger;
+        setQuestion(props.quiz.questions[time].question);
+        setCorrectResponse(props.quiz.questions[time].correctResponse);
+        setErrorResponse(props.quiz.questions[time].errorResponse);
+        setCorrectAnswer(props.quiz.questions[time].correctAnswer);
+      }
+
+      /*if (event.eventData.time === 4.5) {
         media.pause();
         handleOpen();
         setQuestion("How many kittens?");
         setCorrectResponse("Correct!");
         setErrorResponse("Correct answer: 1");
         setCorrectAnswer("1");
-      } else if (event.eventData.time === 21) {
+      } else if (event.eventData.time === 7.5) {
         media.pause();
         handleOpen();
         setQuestion("How many puppies?");
@@ -156,8 +163,7 @@ export default function VideoQuiz() {
         setCorrectAnswer("2");
       } else {
         // do nothing
-      }
-      // alert('timeplayed: ' + event.eventData.time)
+      }*/
       console.log(event.eventData.time + " seconds played");
     });
   }, []);
@@ -167,8 +173,8 @@ export default function VideoQuiz() {
     //disable button
   };
   return (
-    <Card sx={{ maxWidth: "md" }}>
-      <CardContent sx={{ maxWidth: "md" }}>
+    <Card sx={{ maxWidth: "sm" }}>
+      <CardContent sx={{ maxWidth: "sm" }}>
         <Button
           variant="contained"
           color="primary"
@@ -180,12 +186,9 @@ export default function VideoQuiz() {
         <Typography component="div" variant="h5">
           Video
         </Typography>
-        <Button onClick={playVideo} sx={{ display: "inline" }}>
+        {/* <Button onClick={playVideo} sx={{ display: "inline" }}>
           Play Video
-        </Button>
-        <Button onClick={refresh} sx={{ display: "inline" }}>
-          Refresh
-        </Button>
+        </Button> */}
         <Modal
           open={open}
           onOpen={handleOpen}
