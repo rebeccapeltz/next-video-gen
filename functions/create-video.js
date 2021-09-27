@@ -1,11 +1,11 @@
 const axios = require("axios");
-require('dotenv').config()
-const cloudinary = require('cloudinary').v2
+require("dotenv").config();
+const cloudinary = require("cloudinary").v2;
 
 exports.handler = async (event) => {
   // parse data from body
   const data = JSON.parse(event.body);
-  console.log("data:",data);
+  // console.log("data:",data);
 
   // extract data elements
   const publicId = data.public_id;
@@ -18,16 +18,14 @@ exports.handler = async (event) => {
   // process.env["CLOUDINARY_URL"] = cloudinaryURLValue;
   // const cloudinary = require("cloudinary").v2;
 
-  
   console.log(manifest, notificationURL, publicId);
 
   // set up params for signing:parse credentials
   // parse cloudinary URL values
-  const config = cloudinary.config();
-  const cloudName = config.cloud_name;
-  console.log('cloudname:',cloud_name);
-  const apiKey = config.api_key;
-  const apiSecret = config.api_secret;
+  const cloudName = cloudinary.config().cloud_name;
+  console.log("cloudname:", cloudName);
+  const apiKey = cloudinary.config().api_key;
+  const apiSecret = cloudinary.config().api_secret;
 
   // define api
   const API = `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`;
