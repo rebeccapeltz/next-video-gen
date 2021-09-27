@@ -28,6 +28,7 @@ const useStyles = makeStyles(() => ({
 // setup fn to post to netlify
 const FN = "/.netlify/functions/create-video";
 const requestCreateVideo = async (FN, body) => {
+  console.log("before post", JSON.parse(body))
   try {
     const response = await axios.post(FN, body);
     console.log("response:", response);
@@ -94,6 +95,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setManifest(JSON.parse(manifestString));
+    console.log("after parse",manifest, JSON.stringify(manifest))
 
     // setup body
     const body = JSON.stringify({
@@ -135,7 +137,7 @@ const Form = () => {
           multiline
           maxRows={15}
           value={manifestString}
-          onChange={(e) => setManifest(e.target.value)}
+          onChange={(e) => setManifestString(e.target.value)}
         />
         <TextField
           label="Notification URL"
