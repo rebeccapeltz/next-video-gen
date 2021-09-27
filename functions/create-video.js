@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   // parse data from body
   const data = JSON.parse(event.body);
   console.log("data:",data);
@@ -24,7 +24,6 @@ exports.handler = async (event, context) => {
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
   const apiSecret = config.api_secret;
-  // console.log("config:", cloudName, apiKey, "secret");
 
   // define api
   const API = `https://api.cloudinary.com/v1_1/${cloudName}/video/create_slideshow`;
@@ -52,9 +51,6 @@ exports.handler = async (event, context) => {
     signature: signature,
     manifest_json: JSON.stringify(manifest),
   };
-
-  // console.log("prior post", JSON.stringify(body));
-  // console.log("post to:", API);
 
   try {
     const response = await axios.post(API, body);
