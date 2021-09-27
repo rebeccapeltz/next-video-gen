@@ -1,20 +1,22 @@
 const axios = require("axios");
 
 exports.handler = async (event, context) => {
-  //load data from body
+  // parse data from body
   const data = JSON.parse(event.body);
-  console.log("data:",JSON.stringify(data,0,2));
+  console.log("data:",data);
 
+  // extract data elements
+  const publicId = data.public_id;
+  const notificationURL = data.notification_url;
   const manifest = data.manifest;
-  // extract cld url value
+  // extract cld url value from CLOUDINARY_URL=cloudinary://...
   console.log("cld url", data.cloudinary_url)
   const cloudinaryURLValue = data.cloudinary_url.split("=")[1];
   // set process.env before loading cloudinary
   process.env["CLOUDINARY_URL"] = cloudinaryURLValue;
   const cloudinary = require("cloudinary").v2;
 
-  const publicId = data.public_id;
-  const notificationURL = data.notification_url;
+  
   console.log(manifest, cloudinaryURLValue, notificationURL, publicId);
 
   // set up params for signing:parse credentials

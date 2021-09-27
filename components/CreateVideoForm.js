@@ -5,7 +5,6 @@ import { makeStyles } from "@mui/styles";
 import { useRouter } from "next/router";
 const axios = require("axios");
 
-
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -23,22 +22,19 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
+
+// setup fn to post to netlify
 const FN = "/.netlify/functions/create-video";
-    //     document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
-    //   })
-    //   .catch(error => {
-    //     console.log("in error",error);
-    //     document.getElementById("warning").textContent = `${error.toString()}`;
-const requestCreateVideo = async (FN, options)=>{
+const requestCreateVideo = async (FN, body) => {
   try {
-    const response = await axios.post(FN, options);
+    const response = await axios.post(FN, body);
     console.log(response);
     document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
   } catch (error) {
     console.log(error);
     document.getElementById("warning").textContent = `${error.toString()}`;
   }
-}
+};
 
 const Form = () => {
   const router = useRouter();
@@ -108,43 +104,18 @@ const Form = () => {
       notificationURL,
       JSON.stringify(manifest, 0, 2)
     );
-    console.log(JSON.stringify({
+  
+    // setup body
+    const body = JSON.stringify({
       public_id: publicId,
       manifest: manifest,
       cloudinary_url: cloudinaryURL,
-      notification_url: notificationURL
-    }))
+      notification_url: notificationURL,
+    });
+    console.log("body prior:", body);
 
-    // setup options
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify({
-        public_id: publicId,
-        manifest: manifest,
-        cloudinary_url: cloudinaryURL,
-        notification_url: notificationURL
-      }),
-    };
-
-    console.log("options prior:", options);
-   
     // post to backend
-    requestCreateVideo(FN, options);
-    // fetch(fn, options)
-    //   .then(res => {
-    //     console.log("in res.json");
-    //     res.json();
-    //   })
-    //   .then(data => {
-    //     console.log("in success", data);
-    //     console.log("server:", data);
-    //     document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
-    //   })
-    //   .catch(error => {
-    //     console.log("in error",error);
-    //     document.getElementById("warning").textContent = `${error.toString()}`;
-    //   });
+    requestCreateVideo(FN, body);
   };
 
   return (
