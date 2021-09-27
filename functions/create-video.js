@@ -1,4 +1,6 @@
 const axios = require("axios");
+require('dotenv').config()
+const cloudinary = require('cloudinary').v2
 
 exports.handler = async (event) => {
   // parse data from body
@@ -10,16 +12,17 @@ exports.handler = async (event) => {
   const notificationURL = data.notification_url;
   const manifest = data.manifest;
   // extract cld url value from CLOUDINARY_URL=cloudinary://...
-  console.log("cld url", data.cloudinary_url)
-  const cloudinaryURLValue = data.cloudinary_url.split("=")[1];
+  // console.log("cld url", data.cloudinary_url)
+  // const cloudinaryURLValue = data.cloudinary_url.split("=")[1];
   // set process.env before loading cloudinary
-  process.env["CLOUDINARY_URL"] = cloudinaryURLValue;
-  const cloudinary = require("cloudinary").v2;
+  // process.env["CLOUDINARY_URL"] = cloudinaryURLValue;
+  // const cloudinary = require("cloudinary").v2;
 
   
-  console.log(manifest, cloudinaryURLValue, notificationURL, publicId);
+  console.log(manifest, notificationURL, publicId);
 
   // set up params for signing:parse credentials
+  // parse cloudinary URL values
   const config = cloudinary.config();
   const cloudName = config.cloud_name;
   const apiKey = config.api_key;
@@ -64,6 +67,4 @@ exports.handler = async (event) => {
       body: JSON.stringify({ message: "error" }),
     };
   }
-
-
 };

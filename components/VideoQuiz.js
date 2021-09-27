@@ -16,8 +16,6 @@ import "cloudinary-video-player/dist/cld-video-player.min.js";
 import "cloudinary-video-player/dist/cld-video-player.min.css";
 import { useEffect } from "react";
 
-
-
 const Div = styled("div")(({ theme }) => ({
   ...theme.typography.button,
   backgroundColor: theme.palette.background.paper,
@@ -35,11 +33,12 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const publicId = "slides-video";
+const publicId = "test926";
 const cld = new Cloudinary({ cloud_name: "pictures77" });
 
 export default function VideoQuiz() {
   const router = useRouter();
+
   const [open, setOpen] = React.useState(false);
   const [media, setMedia] = React.useState(null);
 
@@ -54,9 +53,12 @@ export default function VideoQuiz() {
   const [isFormInvalid, setIsFormInvalid] = useState(false);
   const [helper, setHelper] = useState("Enter a number");
 
+  const refresh = () => {
+    debugger;
+    window.location.reload(false);
+  };
   const initState = () => {
     setOpen(false);
-    setMedia(null);
     setQuestion("");
     setErrorResponse("");
     setCorrectResponse("");
@@ -114,7 +116,7 @@ export default function VideoQuiz() {
       autoplay: false,
       preload: "auto",
       mute: true,
-      bigPlayButton: false,
+      bigPlayButton: true,
       playedEventTimes: [3, 7.5, 12, 16.5, 21],
       transformation: {
         aspect_ratio: "1.5",
@@ -185,8 +187,10 @@ export default function VideoQuiz() {
         <Button onClick={playVideo} sx={{ display: "inline" }}>
           Play Video
         </Button>
+        <Button onClick={refresh} sx={{ display: "inline" }}>
+          Refresh
+        </Button>
         <Modal
-          disableBackdropClick="true"
           open={open}
           onOpen={handleOpen}
           onClose={handleClose}
@@ -221,7 +225,7 @@ export default function VideoQuiz() {
       </CardContent>
       <CardMedia
         component="video"
-        sx={{ maxWidth: "md", }}
+        sx={{ maxWidth: "md" }}
         className="cld-video-player cld-flui"
         id="myvideo"
       />

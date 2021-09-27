@@ -157,7 +157,7 @@ const Form = () => {
           value={notificationURL}
           onChange={(e) => setNotificationURL(e.target.value)}
         />
-        <TextField
+        {/* <TextField
           label="Cloudinary URL"
           placeholder="Enter Cloudinary URL"
           variant="filled"
@@ -165,7 +165,7 @@ const Form = () => {
           required
           value={cloudinaryURL}
           onChange={(e) => setCloudiaryURL(e.target.value)}
-        />
+        /> */}
         <div>
           <Button type="submit" variant="contained" color="primary">
             Submit Create Request
