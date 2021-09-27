@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
+
 const DynamicCreateVideoForm = dynamic(() => import("../components/CreateVideoForm"), {
   ssr: false,
 });

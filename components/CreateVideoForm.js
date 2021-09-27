@@ -3,6 +3,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import { useRouter } from "next/router";
+const axios = require("axios");
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -10,21 +12,33 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "start",
     alignItems: "start",
-    // padding: theme.spacing(2),
     padding: "1rem",
 
     "& .MuiTextField-root": {
-      // margin: theme.spacing(1),
       margin: "1rem",
       width: "300px",
     },
     "& .MuiButtonBase-root": {
-      // margin: theme.spacing(2),
       margin: "1rem",
     },
   },
 }));
-const fn = "/.netlify/functions/create-video";
+const FN = "/.netlify/functions/create-video";
+    //     document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
+    //   })
+    //   .catch(error => {
+    //     console.log("in error",error);
+    //     document.getElementById("warning").textContent = `${error.toString()}`;
+const requestCreateVideo = async (FN, options)=>{
+  try {
+    const response = await axios.post(FN, options);
+    console.log(response);
+    document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
+  } catch (error) {
+    console.log(error);
+    document.getElementById("warning").textContent = `${error.toString()}`;
+  }
+}
 
 const Form = () => {
   const router = useRouter();
@@ -94,6 +108,12 @@ const Form = () => {
       notificationURL,
       JSON.stringify(manifest, 0, 2)
     );
+    console.log(JSON.stringify({
+      public_id: publicId,
+      manifest: manifest,
+      cloudinary_url: cloudinaryURL,
+      notification_url: notificationURL
+    }))
 
     // setup options
     const options = {
@@ -108,22 +128,23 @@ const Form = () => {
     };
 
     console.log("options prior:", options);
+   
     // post to backend
-    debugger;
-    fetch(fn, options)
-      .then(res => {
-        console.log("in res.json");
-        res.json();
-      })
-      .then(data => {
-        console.log("in success", data);
-        console.log("server:", data);
-        document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
-      })
-      .catch(error => {
-        console.log("in error",error);
-        document.getElementById("warning").textContent = `${error.toString()}`;
-      });
+    requestCreateVideo(FN, options);
+    // fetch(fn, options)
+    //   .then(res => {
+    //     console.log("in res.json");
+    //     res.json();
+    //   })
+    //   .then(data => {
+    //     console.log("in success", data);
+    //     console.log("server:", data);
+    //     document.getElementById("result").innerHTML = JSON.stringify(data, 0, 2);
+    //   })
+    //   .catch(error => {
+    //     console.log("in error",error);
+    //     document.getElementById("warning").textContent = `${error.toString()}`;
+    //   });
   };
 
   return (
