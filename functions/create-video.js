@@ -56,19 +56,22 @@ exports.handler = async (event, context) => {
   // console.log("prior post", JSON.stringify(body));
   // console.log("post to:", API);
 
-  try {
-    const response = await axios.post(API, body);
-    // console.log(response);
-    return {
-      statusCode: response.status,
-      body: JSON.stringify({ message: "success" }),
-    };
-  } catch (error) {
-    // console.log(error.response.body);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: "error" }),
-    };
-  }
+  // try {
+  //   const response = await axios.post(API, body);
+  //   return {
+  //     statusCode: response.status,
+  //     body: JSON.stringify({ message: "success" }),
+  //   };
+  // } catch (error) {
+  //   return {
+  //     statusCode: 500,
+  //     body: JSON.stringify({ message: "error" }),
+  //   };
+  // }
+  //test what do you get when you just return 200
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "success" }),
+  };
 
 };
