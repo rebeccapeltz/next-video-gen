@@ -166,7 +166,7 @@ export default function VideoQuiz(props) {
           Go to Create Video
         </Button>
         <Typography component="div" variant="h5">
-          Video
+          Prototype Video Quiz
         </Typography>
         {/* <Button onClick={playVideo} sx={{ display: "inline" }}>
           Play Video
