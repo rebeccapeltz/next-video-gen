@@ -146,24 +146,6 @@ export default function VideoQuiz(props) {
         setErrorResponse(props.quiz.questions[time].errorResponse);
         setCorrectAnswer(props.quiz.questions[time].correctAnswer);
       }
-
-      /*if (event.eventData.time === 4.5) {
-        media.pause();
-        handleOpen();
-        setQuestion("How many kittens?");
-        setCorrectResponse("Correct!");
-        setErrorResponse("Correct answer: 1");
-        setCorrectAnswer("1");
-      } else if (event.eventData.time === 7.5) {
-        media.pause();
-        handleOpen();
-        setQuestion("How many puppies?");
-        setCorrectResponse("Correct!");
-        setErrorResponse("Correct answer: 2");
-        setCorrectAnswer("2");
-      } else {
-        // do nothing
-      }*/
       console.log(event.eventData.time + " seconds played");
     });
   }, []);
@@ -191,7 +173,6 @@ export default function VideoQuiz(props) {
         </Button> */}
         <Modal
           open={open}
-          onOpen={handleOpen}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
