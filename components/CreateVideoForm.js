@@ -17,12 +17,12 @@ const useStyles = makeStyles(() => ({
 
     "& .MuiTextField-root": {
       margin: "1rem",
-      width: "500px",
+      width: "700px",
     },
     "& .MuiButtonBase-root": {
       margin: "1rem",
     },
-  },
+  }
 }));
 
 // setup fn to post to netlify
@@ -138,8 +138,9 @@ const Form = () => {
           placeholder="Enter manifest"
           required
           multiline
+          InputProps={{ style: { fontSize: 12 } }}
           maxRows={10}
-          value={manifestString}
+          value={manifest}
           onChange={(e) => setManifestString(e.target.value)}
         />
         <TextField
