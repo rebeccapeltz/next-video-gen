@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
 
     "& .MuiTextField-root": {
       margin: "1rem",
-      width: "300px",
+      width: "500px",
     },
     "& .MuiButtonBase-root": {
       margin: "1rem",
@@ -138,8 +138,8 @@ const Form = () => {
           placeholder="Enter manifest"
           required
           multiline
-          maxRows={15}
-          // value={}
+          maxRows={10}
+          value={manifestString}
           onChange={(e) => setManifestString(e.target.value)}
         />
         <TextField
