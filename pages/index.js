@@ -8,7 +8,7 @@ const DynamicVideoQuiz = dynamic(() => import("../components/VideoQuiz"), {
 export default function Home() {
   const quiz = {
     cloudName: "dhhz4q1ip",
-    publicId: "test-slide-vid",
+    publicId: "education",
     playedEventTimes: [1.5, 3, 4.5, 6, 7.5],
     questions: {
       4.5: {
