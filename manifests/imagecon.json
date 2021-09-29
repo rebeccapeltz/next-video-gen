@@ -1,0 +1,41 @@
+{
+  "w": 1000,
+  "h": 1000,
+  "du": 15,
+  "fps": 20,
+  "vars": {
+    "transition": "s:InvertedPageCurl",
+    "sdur": 1000,
+    "tdur": 500,
+    "slides": [
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_1000,c_scale,pg_1,f_png/shirly-test1",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_1000,c_scale,pg_2,f_png/shirly-test1",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_1000,c_scale,pg_3,f_png/shirly-test1",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_1000,c_scale,pg_4,f_png/shirly-test1",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_1000,c_scale,pg_5,f_png/shirly-test1",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_1000,c_scale,pg_6,f_png/shirly-test1",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/v1632853704/imagecon3.mp4",
+        "type": "s:video"
+      }
+    ]
+  }
+}

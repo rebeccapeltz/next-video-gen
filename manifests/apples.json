@@ -1,5 +1,5 @@
 {
-  "w": 500,
+  "w": 888,
   "h": 500,
   "du": 10,
   "fps": 20,
@@ -9,28 +9,28 @@
     "tdur": 500,
     "slides": [
       {
-        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/ar_1.5,w_400,c_fill/l_text:Arial_50:Apple%20Season/v1632774488/1px",
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/ar_1.5,w_888,c_fill/l_text:Arial_50:Apple%20Season/v1632774488/1px",
         "type": "s:image"
       },
       {
-        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/du_2/apples-delish.mp4",
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/du_2/apples-delish",
+        "type": "s:video"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/ar_1.5,w_888,c_fill/l_text:Arial_50:Time%20to%20gather/1px",
         "type": "s:image"
       },
       {
-        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/ar_1.5,w_400,c_fill/l_text:Arial_50:Time%20to%20gather/1px",
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/v1632847903/apples-pick",
+        "type": "s:video"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/ar_1.5,w_88,c_fill/l_text:Arial_50:Time%20to%20make%20pie/1px",
         "type": "s:image"
       },
       {
-        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_400,c_scale,pg_4,f_png/shirly-test",
-        "type": "s:image"
-      },
-      {
-        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/ar_1.5,w_400,c_fill/l_text:Arial_50:Time%20to%20make%20pie/1px",
-        "type": "s:image"
-      },
-      {
-        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_400,c_scale,pg_6,f_png/shirly-test",
-        "type": "s:image"
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/v1632847935/apples-pie",
+        "type": "s:video"
       }
     ]
   }
