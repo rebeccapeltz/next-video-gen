@@ -1,0 +1,49 @@
+{
+  "w": 888,
+  "h": 500,
+  "du": 24,
+  "fps": 20,
+  "vars": {
+    "transition": "s:circlecrop",
+    "sdur": 2000,
+    "tdur": 1000,
+    "slides": [
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/eo_2,q_auto/mo-test/coffee.mp4",
+        "type": "s:video"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_500,h_500,c_pad,b_black/ar_1.5,w_400,c_fill/l_text:Arial_30:Most Popular Coffee/v1632774488/1px",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/co_red,x_-100,y_-200,l_text:Arial_50:Espresso/v1632853747/mo-test/espresso.jpg",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/so_2,du_2,q_auto/mo-test/coffee.mp4",
+        "type": "s:video"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_500,h_500,c_pad,b_black/ar_1.5,w_400,c_fill/l_text:Arial_30:Favorite Coffee shop/v1632774488/1px",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/co_blue,x_-100,y_-200,l_text:Arial_50:DutchBros/v1632860857/mo-test/dutchBros.jpg",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/video/upload/so_4,du_2,q_auto/mo-test/coffee.mp4",
+        "type": "s:video"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/w_500,h_500,c_pad,b_black/ar_1.5,w_400,c_fill/l_text:Arial_30:Best Company/v1632774488/1px",
+        "type": "s:image"
+      },
+      {
+        "media": "s:https://res.cloudinary.com/dhhz4q1ip/image/upload/v1632861086/mo-test/friends.jpg",
+        "type": "s:image"
+      }
+    ]
+  }
+}

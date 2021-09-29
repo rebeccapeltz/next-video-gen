@@ -123,7 +123,7 @@ export default function VideoQuiz(props) {
       playedEventTimes: props.quiz.playedEventTimes,
       transformation: {
         aspect_ratio: "1.5",
-        width: 400,
+        width: 1000,
         crop: "fill",
       },
       
